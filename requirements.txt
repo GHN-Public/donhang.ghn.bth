@@ -2,3 +2,5 @@ fastapi
 uvicorn
 requests
 urllib3
+openpyxl
+pandas
