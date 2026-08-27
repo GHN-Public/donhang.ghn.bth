@@ -198,39 +198,18 @@ def load_session_headers():
 
 
 async def ensure_headers(chat_id=None):
-    """Đảm bảo headers API luôn hợp lệ (có khóa Mutex chống xung đột đồng thời)."""
+    """Đảm bảo headers API luôn hợp lệ từ file ghn_session.json."""
     h = load_session_headers()
     if h:
-        try:
-            r = requests.post(f"{API_BASE}/api/lastmile/user/my-profile",
-                              headers=h, json={}, timeout=6)
-            if r.status_code == 200 and r.json().get("code") == 0:
-                return h
-        except Exception:
-            pass
+        return h
+    
+    print("[TraCuu] Session hết hạn hoặc không tìm thấy trong ghn_session.json")
+    return None
+ 
 
     async with _login_lock:
         # Double-check sau khi nhận lock
-        h = load_session_headers()
-        if h:
-            try:
-                r = requests.post(f"{API_BASE}/api/lastmile/user/my-profile",
-                                  headers=h, json={}, timeout=6)
-                if r.status_code == 200 and r.json().get("code") == 0:
-                    return h
-            except Exception:
-                pass
-
-        print("[TrCu] Session hết hạn, đang tự động đăng nhập làm mới...")
-        try:
-            import ghn_browser_helper
-            ctx = await ghn_browser_helper.get_shared_context()
-            pg = await ctx.new_page()
-            ok = await ghn_browser_helper.check_and_login(
-                pg, ctx, "https://nhanh.ghn.vn/lastmile", chat_id=chat_id)
-            if ok:
-                await ghn_browser_helper.save_session(ctx)
-            await pg.close()
+     
             return load_session_headers()
         except Exception as e:
             print(f"[TrCu] Lỗi làm mới session: {e}")
