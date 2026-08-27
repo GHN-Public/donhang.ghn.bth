@@ -5,3 +5,4 @@ urllib3
 openpyxl
 pandas
 python-dotenv
+playwright
