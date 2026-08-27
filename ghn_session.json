@@ -12,6 +12,19 @@
           "value": "c34ac688-ccb8-483b-945a-e47c2de91b38"
         }
       ]
+    },
+    {
+      "origin": "https://tracuunoibo.ghn.vn",
+      "localStorage": [
+        {
+          "name": "SESSION",
+          "value": "c34ac688-ccb8-483b-945a-e47c2de91b38"
+        },
+        {
+          "name": "token",
+          "value": "c34ac688-ccb8-483b-945a-e47c2de91b38"
+        }
+      ]
     }
   ]
 }
