@@ -37,7 +37,7 @@ class LookupRequest(BaseModel):
 
 @app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 async def serve_home():
-    index_path = os.path.join(STATIC_DIR, "index.html")
+   index_path = os.path.join(BASE_DIR, "index.html")
     if os.path.exists(index_path):
         with open(index_path, "r", encoding="utf-8") as f:
             return HTMLResponse(content=f.read())
