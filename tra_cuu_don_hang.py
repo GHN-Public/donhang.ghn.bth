@@ -188,8 +188,6 @@ def load_session_headers():
     except Exception as e:
         print(f"[TraCuu] Lỗi đọc session: {e}")
     return None
-  ]
-}
                         }
     except Exception as e:
         print(f"[TrCu] Lỗi đọc session: {e}")
