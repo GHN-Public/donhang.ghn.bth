@@ -35,7 +35,7 @@ _lookup_queue_lock = asyncio.Lock()
 class LookupRequest(BaseModel):
     order_codes: List[str]
 
-@app.get("/", response_class=HTMLResponse)
+@app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 async def serve_home():
     index_path = os.path.join(STATIC_DIR, "index.html")
     if os.path.exists(index_path):
