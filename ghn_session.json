@@ -5,7 +5,11 @@
       "localStorage": [
         {
           "name": "SESSION",
-          "value": "c14ac618-ccb1-401b-9d5a-ed7c2de91b38"
+          "value": "c34ac688-ccb8-483b-945a-e47c2de91b38"
+        },
+        {
+          "name": "token",
+          "value": "c34ac688-ccb8-483b-945a-e47c2de91b38"
         }
       ]
     }
