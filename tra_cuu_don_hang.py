@@ -197,6 +197,7 @@ def load_session_headers():
     return None
 
 
+
 async def ensure_headers(chat_id=None):
     """Đảm bảo headers API luôn hợp lệ từ file ghn_session.json."""
     h = load_session_headers()
@@ -205,17 +206,6 @@ async def ensure_headers(chat_id=None):
     
     print("[TraCuu] Session hết hạn hoặc không tìm thấy trong ghn_session.json")
     return None
- 
-
-    async with _login_lock:
-        # Double-check sau khi nhận lock
-     
-            return load_session_headers()
-        except Exception as e:
-            print(f"[TrCu] Lỗi làm mới session: {e}")
-    return None
-
-
 def _utc2vn(s):
     """Chuyển thời gian UTC sang định dạng ngày giờ Việt Nam."""
     if not s:
