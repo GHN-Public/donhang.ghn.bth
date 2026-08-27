@@ -1,7 +1,13 @@
 {
-  "token": "c14ac618-ccb1-401b-9d5a-ed7c2de91b38",
-  "Token": "c14ac618-ccb1-401b-9d5a-ed7c2de91b38",
-  "cookies": {
-    "hjSessionUser_2910793": "eyJpZCI6ImY0YjdkNTU5LWE4NmQtNTE4MS05ODZkLTM1ODI2YmYzYjNkMCIsImNyZWF0ZWQiOjE3NzcxODA5NjcyMDUsImV4aXN0aW5nIjp0cnVlfQ=="
-  }
+  "origins": [
+    {
+      "origin": "https://nhanh.ghn.vn",
+      "localStorage": [
+        {
+          "name": "SESSION",
+          "value": "c14ac618-ccb1-401b-9d5a-ed7c2de91b38"
+        }
+      ]
+    }
+  ]
 }
