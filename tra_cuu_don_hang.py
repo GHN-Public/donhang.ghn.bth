@@ -177,17 +177,17 @@ def load_session_headers():
     try:
         with open(SESSION_FILE, "r", encoding="utf-8") as f:
             sd = json.load(f)
-       {
-  "origins": [
-    {
-      "origin": "https://nhanh.ghn.vn",
-      "localStorage": [
-        {
-          "name": "SESSION",
-          "value": "c14ac618-ccb1-401b-9d5a-ed7c2de91b38"
-        }
-      ]
-    }
+            for o in sd.get("origins", []):
+                if o.get("origin") == "https://nhanh.ghn.vn":
+                    for item in o.get("localStorage", []):
+                        if item.get("name") == "SESSION":
+                            return {
+                                "Content-Type": "application/json",
+                                "Authorization": f"Bearer {item.get('value')}"
+                            }
+    except Exception as e:
+        print(f"[TraCuu] Lỗi đọc session: {e}")
+    return None
   ]
 }
                         }
