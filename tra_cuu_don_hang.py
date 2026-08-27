@@ -171,19 +171,26 @@ SERVICE_TYPES_VI = {
 
 
 def load_session_headers():
-    """Đọc bearer token từ file session."""
+    """Đọc token từ file session GHN và tạo header phù hợp cho API nội bộ."""
     if not os.path.exists(SESSION_FILE):
         return None
     try:
         with open(SESSION_FILE, "r", encoding="utf-8") as f:
             sd = json.load(f)
             for o in sd.get("origins", []):
-                if o.get("origin") == "https://nhanh.ghn.vn":
+                # Chấp nhận cả domain nhanh.ghn.vn lẫn tracuunoibo.ghn.vn
+                if o.get("origin") in ["https://nhanh.ghn.vn", "https://tracuunoibo.ghn.vn"]:
                     for item in o.get("localStorage", []):
-                        if item.get("name") == "SESSION":
+                        # Lấy giá trị nếu key là 'token' hoặc 'SESSION'
+                        if item.get("name") in ["token", "SESSION"] and item.get("value"):
+                            token_val = item.get("value")
                             return {
                                 "Content-Type": "application/json",
-                                "Authorization": f"Bearer {item.get('value')}"
+                                "Token": token_val,
+                                "token": token_val,
+                                "Authorization": f"Bearer {token_val}",
+                                "Origin": "https://tracuunoibo.ghn.vn",
+                                "Referer": "https://tracuunoibo.ghn.vn/"
                             }
     except Exception as e:
         print(f"[TraCuu] Lỗi đọc session: {e}")
